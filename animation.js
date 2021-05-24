@@ -35,8 +35,10 @@ Scene.clearCanvas = function () {
 };
 
 Scene.mainLoop = function() {
+
     Scene.clearCanvas();
     Scene.update();
+    Scene.background();
     Scene.draw();
     // Animate at 24 frames a second.
     window.setTimeout(Scene.mainLoop, 1000 / 10);
@@ -44,8 +46,11 @@ Scene.mainLoop = function() {
 	if(Scene.sprite.offset <= 24)
 	Scene.speak();
 
+
 	if(Scene.sprite.offset >= 800)
 	Scene.speak2();
+
+
 	
 };
 
@@ -74,7 +79,7 @@ Scene.speak = function() {
  var speech = document.getElementById("ohshit");
 
 
-  Scene.canvasContext.drawImage(speech, 355, 50, 100, 75);
+  Scene.canvasContext.drawImage(speech, 300, 10, 100, 75);
   
 
 		
@@ -85,10 +90,16 @@ Scene.speak2 = function() {
  var speech2 = document.getElementById("earthsucks");
 
 
-  Scene.canvasContext.drawImage(speech2, 800, 10, 100, 75);
-  
+  Scene.canvasContext.drawImage(speech2, 850, 60, 100, 75);		
 
-		
+}
 
+
+	var background = new Image();
+background.src = "background.jpg";
+
+// Make sure the image is loaded first otherwise nothing will draw.
+Scene.background = function(){
+    Scene.canvasContext.drawImage(background,0,0, Scene.canvas.width, Scene.canvas.height);   
 }
 
